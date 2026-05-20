@@ -1,3 +1,5 @@
 *.exe
 *.pdb
 *.o
+debug_build
+debug_build.dSYM/
