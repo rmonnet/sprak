@@ -32,17 +32,39 @@ next_token :: proc(l: ^Lexer) -> Token {
 	token: Token
 	switch l.ch {
 	case '=':
-		token = Token{.Assign, cur_literal(l^)}
+		if peek_char(l^) == '=' {
+			read_char(l)
+			token = Token{.Equal, cur_literal(l^)}
+		} else {
+			token = Token{.Assign, cur_literal(l^)}
+		}
+	case '+':
+		token = Token{.Plus, cur_literal(l^)}
+	case '-':
+		token = Token{.Minus, cur_literal(l^)}
+	case '!':
+		if peek_char(l^) == '=' {
+			read_char(l)
+			token = Token{.Not_Equal, cur_literal(l^)}
+		} else {
+			token = Token{.Bang, cur_literal(l^)}
+		}
+	case '/':
+		token = Token{.Slash, cur_literal(l^)}
+	case '*':
+		token = Token{.Star, cur_literal(l^)}
 	case ';':
 		token = Token{.Semicolon, cur_literal(l^)}
+	case ',':
+		token = Token{.Comma, cur_literal(l^)}
+	case '<':
+		token = Token{.Less_Than, cur_literal(l^)}
+	case '>':
+		token = Token{.Greater_Than, cur_literal(l^)}
 	case '(':
 		token = Token{.Left_Paren, cur_literal(l^)}
 	case ')':
 		token = Token{.Right_Paren, cur_literal(l^)}
-	case ',':
-		token = Token{.Comma, cur_literal(l^)}
-	case '+':
-		token = Token{.Plus, cur_literal(l^)}
 	case '{':
 		token = Token{.Left_Bracket, cur_literal(l^)}
 	case '}':
@@ -139,6 +161,16 @@ lookup_ident :: proc(ident: string) -> TokenType {
 		type = .Function
 	case "let":
 		type = .Let
+	case "true":
+		type = .True
+	case "false":
+		type = .False
+	case "if":
+		type = .If
+	case "else":
+		type = .Else
+	case "return":
+		type = .Return
 	case:
 		type = .Ident
 	}

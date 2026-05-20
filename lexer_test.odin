@@ -28,6 +28,17 @@ let add = fn(x,y) {
 };
 
 let result = add(five, ten);
+!-/*5;
+5 < 10 > 5;
+
+if (5 < 10) {
+	return true;
+} else {
+	return false;
+}
+
+10 == 10;
+10 != 9;
 `
 	lexer := lexer_create(input)
 	defer lexer_destroy(lexer)
@@ -67,6 +78,43 @@ let result = add(five, ten);
 	expect_next_token(t, lexer, .Comma, ",")
 	expect_next_token(t, lexer, .Ident, "ten")
 	expect_next_token(t, lexer, .Right_Paren, ")")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .Bang, "!")
+	expect_next_token(t, lexer, .Minus, "-")
+	expect_next_token(t, lexer, .Slash, "/")
+	expect_next_token(t, lexer, .Star, "*")
+	expect_next_token(t, lexer, .Int, "5")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .Int, "5")
+	expect_next_token(t, lexer, .Less_Than, "<")
+	expect_next_token(t, lexer, .Int, "10")
+	expect_next_token(t, lexer, .Greater_Than, ">")
+	expect_next_token(t, lexer, .Int, "5")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .If, "if")
+	expect_next_token(t, lexer, .Left_Paren, "(")
+	expect_next_token(t, lexer, .Int, "5")
+	expect_next_token(t, lexer, .Less_Than, "<")
+	expect_next_token(t, lexer, .Int, "10")
+	expect_next_token(t, lexer, .Right_Paren, ")")
+	expect_next_token(t, lexer, .Left_Bracket, "{")
+	expect_next_token(t, lexer, .Return, "return")
+	expect_next_token(t, lexer, .True, "true")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .Right_Bracket, "}")
+	expect_next_token(t, lexer, .Else, "else")
+	expect_next_token(t, lexer, .Left_Bracket, "{")
+	expect_next_token(t, lexer, .Return, "return")
+	expect_next_token(t, lexer, .False, "false")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .Right_Bracket, "}")
+	expect_next_token(t, lexer, .Int, "10")
+	expect_next_token(t, lexer, .Equal, "==")
+	expect_next_token(t, lexer, .Int, "10")
+	expect_next_token(t, lexer, .Semicolon, ";")
+	expect_next_token(t, lexer, .Int, "10")
+	expect_next_token(t, lexer, .Not_Equal, "!=")
+	expect_next_token(t, lexer, .Int, "9")
 	expect_next_token(t, lexer, .Semicolon, ";")
 	expect_next_token(t, lexer, .End_Of_File, "")
 }

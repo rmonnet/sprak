@@ -8,6 +8,14 @@ TokenType :: enum {
 	Int,
 	Assign,
 	Plus,
+	Minus,
+	Bang,
+	Star,
+	Slash,
+	Less_Than,
+	Greater_Than,
+	Equal,
+	Not_Equal,
 	Comma,
 	Semicolon,
 	Left_Paren,
@@ -16,6 +24,11 @@ TokenType :: enum {
 	Right_Bracket,
 	Let,
 	Function,
+	True,
+	False,
+	If,
+	Else,
+	Return,
 }
 
 Token :: struct {
