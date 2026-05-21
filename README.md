@@ -14,6 +14,16 @@ If you want to follow along, you need a copy of Thornston Ball's Writing an Inte
 
 You also need to install the [Odin compiler](https://odin-lang.org/docs/install/).
 
+## Code Architecture
+
+The code follows pretty much the book organization.
+The functionality is organized along the following files:
+
+- `lexer.odin` contains the types and procedures required for the lexer phase, this include the token and token type definitions.
+- `repl.odin` contains the code for the Read Eval Print Loop running the Monkey interpreter from the command line.
+- `main.odin` is the stub for the interpreter.
+  During development, it is also used to host whatever fragment of code we need to debug.
+
 ## Todos
 
 - [ ] Beef up the README
@@ -22,4 +32,4 @@ You also need to install the [Odin compiler](https://odin-lang.org/docs/install/
 
 The Odin code is copyrighted Robert Monnet 2026 and is provided under the [MIT License](https://opensource.org/license/mit).
 
-The book and its original code are obviously copyrighted Thornston Ball.
+The book and its original code are obviously copyrighted Thornston Ball 2016-2018.

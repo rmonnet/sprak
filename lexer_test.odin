@@ -118,3 +118,4 @@ if (5 < 10) {
 	expect_next_token(t, lexer, .Semicolon, ";")
 	expect_next_token(t, lexer, .End_Of_File, "")
 }
+

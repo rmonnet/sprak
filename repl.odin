@@ -9,7 +9,9 @@ import "core:strings"
 
 PROMPT :: ">> "
 
-repl_start :: proc(input: ^os.File, output: ^os.File) {
+// `repl_run` starts the REPL (Read, Eval, Print Loop).
+// It takes explicit input and output stream to allow use during testing.
+repl_run :: proc(input: ^os.File, output: ^os.File) {
 
 	buf_reader: bufio.Reader
 	bufio.reader_init(&buf_reader, os.to_stream(input))
@@ -36,3 +38,4 @@ repl_start :: proc(input: ^os.File, output: ^os.File) {
 
 	}
 }
+
