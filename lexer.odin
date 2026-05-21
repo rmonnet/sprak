@@ -1,8 +1,6 @@
 // This files contains the logic for the Monkey lexer
 package sprak
 
-import "core:strings"
-
 Lexer :: struct {
 	input:    string,
 	cur_pos:  int,
@@ -122,11 +120,7 @@ is_digit :: proc(ch: byte) -> bool {
 
 cur_literal :: proc(l: Lexer) -> string {
 
-	literal, ok := strings.substring(l.input, l.mark, l.next_pos)
-	if !ok {
-		panic("Unable to get the current literal out of the lexer input.")
-	}
-	return literal
+	return string(l.input[l.mark:l.next_pos])
 }
 
 // Set a mark in the input stream at the current position.

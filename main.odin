@@ -1,8 +1,9 @@
 package sprak
 
 import "core:fmt"
+import "core:os"
 
-main :: proc() {
+main_debug :: proc() {
 
 	input := `
 let five = 5;
@@ -23,4 +24,16 @@ let result = add(five, ten);
 
 	token = next_token(lexer)
 	fmt.println(token)
+}
+
+main_repl :: proc() {
+
+	fmt.println("Monkey Programming Language.")
+	fmt.println("Please enter commands.")
+	repl_start(os.stdin, os.stdout)
+}
+
+main :: proc() {
+
+	main_repl()
 }
