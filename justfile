@@ -4,7 +4,7 @@ _list-recipes:
 
 # Count the SLOCs in the project
 slocs:
-    tokei ./ ./math/
+    tokei ./
 
 # Run all the tests in the project
 test:
