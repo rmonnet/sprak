@@ -29,3 +29,7 @@ clean:
 # Run the interpreter
 @repl:
     odin run .
+
+# Check the syntax of the odin files
+@vet:
+    odin check . -vet
