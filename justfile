@@ -33,3 +33,7 @@ clean:
 # Check the syntax of the odin files
 @vet:
     odin check . -vet
+
+# Look for TODOs in the source code
+@todos:
+    grep TODO *.odin

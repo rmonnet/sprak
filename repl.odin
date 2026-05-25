@@ -11,20 +11,21 @@ PROMPT :: ">> "
 
 // `repl_run` starts the REPL (Read, Eval, Print Loop).
 // It takes explicit input and output stream to allow use during testing.
-repl_run :: proc(input: ^os.File, output: ^os.File) {
+// TODO: We should add an error stream.
+repl_run :: proc(stdin: ^os.File, stdout: ^os.File) {
 
 	buf_reader: bufio.Reader
-	bufio.reader_init(&buf_reader, os.to_stream(input))
+	bufio.reader_init(&buf_reader, os.to_stream(stdin))
 	defer bufio.reader_destroy(&buf_reader)
 
 	for {
 
-		fmt.fprint(output, PROMPT)
+		fmt.fprint(stdout, PROMPT)
 		line, err := bufio.reader_read_string(&buf_reader, '\n')
 		defer delete(line)
 		if err == io.Error.EOF {return}
 		if err != io.Error.None {
-			fmt.fprintf(output, "Error reading input: %s\n", err)
+			fmt.fprintf(stdout, "Error reading input: %s\n", err)
 			return
 		}
 
@@ -33,7 +34,7 @@ repl_run :: proc(input: ^os.File, output: ^os.File) {
 		defer lexer_destroy(lexer)
 
 		for token := next_token(lexer); token.type != .End_Of_File; token = next_token(lexer) {
-			fmt.fprintf(output, "%v\n", token)
+			fmt.fprintf(stdout, "%v\n", token)
 		}
 
 	}
