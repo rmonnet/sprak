@@ -43,7 +43,7 @@ parse_token :: proc(p: ^Parser) {
 // `parse_program` parse an entire unit of source code.
 parse_program :: proc(p: ^Parser) -> ^Program {
 
-	program := new(Program)
+	program := program_create()
 
 	for p.cur_token.type != .End_Of_File {
 		stmt := parse_statement(p)

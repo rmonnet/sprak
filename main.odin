@@ -8,25 +8,18 @@ import "core:os"
 // It should be removed from the final product.
 main_debug :: proc() {
 
-	input := `
-let five = 5;
-let ten = 10;
+	program: Program
+	stmts := []Statement {
+		Let_Stmt {
+			token = Token{.Let, "let"},
+			identifier = Ident_Expr{token = Token{.Ident, "myVar"}, value = "myVar"},
+			value = Ident_Expr{token = Token{.Ident, "anotherVar"}, value = "anotherVar"},
+		},
+	}
+	append(&program.stmts, ..stmts)
 
-let add = fn(x,y) {
-	x + y;
-};
-
-let result = add(five, ten);
-`
-
-	lexer := lexer_create(input)
-	defer lexer_destroy(lexer)
-
-	token := next_token(lexer)
-	fmt.println(token)
-
-	token = next_token(lexer)
-	fmt.println(token)
+	actual := prog_to_string(program)
+	fmt.println(actual)
 }
 
 // `main_repl` contains the REPL entry point.
@@ -42,6 +35,6 @@ main_repl :: proc() {
 main :: proc() {
 
 	//main_debug()
-	main_repl()
+	main_debug()
 }
 
